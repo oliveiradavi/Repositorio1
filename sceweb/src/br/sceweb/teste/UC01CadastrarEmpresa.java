@@ -33,10 +33,10 @@ public class UC01CadastrarEmpresa {
 	public void excluiCNPJ() {
 		empresaDAO.exclui("89424232000180");
 	}
-	
+
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-		
+
 	}
 
 	/**
@@ -47,13 +47,14 @@ public class UC01CadastrarEmpresa {
 	public void CT01UC01FBCadastrarEmpresa_com_sucesso() {
 		assertEquals(1, empresaDAO.adiciona(empresa));
 	}
-	
+
 	/**
-	 * verificar o comportamento do sistema na inclusão de uma empresa com
-	 * cnpj inválido
+	 * verificar o comportamento do sistema na inclusão de uma empresa com cnpj
+	 * inválido
 	 */
-	@Test(expected=RuntimeException.class)
-	public void CT02UC01FBCadastrarEmpresa_com_cnpj_invalido() {
-		empresaDAO.adiciona(empresa);
+	@Test(expected = IllegalArgumentException.class)
+	public void CT02UC01FBCadastra_com_cnpj_invalido() {
+		empresa.setCnpj("8942423200018");
 	}
+
 }
